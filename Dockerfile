@@ -12,7 +12,7 @@ RUN	dpkg-divert /etc/locale.gen \
 &&	apt-get -yqq install locales texlive-full texlive-latex-extra \
 &&	apt-get clean \
 &&	rm -rf /var/lib/apt/lists/* \
-&&	/etc/locale.gen-docker /etc/locale.gen \
+&&	mv /etc/locale.gen-docker /etc/locale.gen \
 &&	locale-gen \
 &&	dpkg-reconfigure locales \
 &&	dpkg-reconfigure tzdata
