@@ -1,7 +1,7 @@
 FROM debian:testing
 ENV DEBIAN_FRONTEND noninteractive
 
-COPY	locale.get /etc/locale.gen-docker
+COPY	locale.gen /etc/locale.gen-docker
 RUN	dpkg-divert /etc/locale.gen \
 &&      echo tzdata tzdata/Zones/Etc select UTC | debconf-set-selections \
 &&      echo debconf debconf/priority select critical | debconf-set-selections \
