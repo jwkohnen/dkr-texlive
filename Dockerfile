@@ -8,7 +8,7 @@ RUN	dpkg-divert /etc/locale.gen \
 &&      echo debconf debconf/frontend select readline | debconf-set-selections \
 &&      echo debconf debconf/frontend seen false | debconf-set-selections \
 &&	apt-get update -qqy \
-&&	apt-get dist-upgrade -fyqq
+&&	apt-get dist-upgrade -fyqq \
 &&	apt-get -yqq locales install texlive-full texlive-latex-extra \
 &&	apt-get clean \
 &&	rm -rf /var/lib/apt/lists/* \
