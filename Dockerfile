@@ -9,7 +9,7 @@ RUN	dpkg-divert /etc/locale.gen \
 &&      echo debconf debconf/frontend seen false | debconf-set-selections \
 &&	apt-get update -qqy \
 &&	apt-get dist-upgrade -fyqq \
-&&	apt-get -yqq locales install texlive-full texlive-latex-extra \
+&&	apt-get -yqq install locales texlive-full texlive-latex-extra \
 &&	apt-get clean \
 &&	rm -rf /var/lib/apt/lists/* \
 &&	/etc/locale.gen-docker /etc/locale.gen \
