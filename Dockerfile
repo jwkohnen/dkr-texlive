@@ -1,6 +1,6 @@
 FROM debian:testing
-ENV DEBIAN_FRONTEND noninteractive
 
+ENV DEBIAN_FRONTEND noninteractive
 COPY	locale.gen /etc/locale.gen-docker
 RUN	dpkg-divert /etc/locale.gen \
 &&      echo tzdata tzdata/Zones/Etc select UTC | debconf-set-selections \
@@ -17,3 +17,4 @@ RUN	dpkg-divert /etc/locale.gen \
 &&	dpkg-reconfigure locales \
 &&	dpkg-reconfigure tzdata
 CMD	[ "/bin/bash", "-li" ]
+ENV DEBIAN_FRONTEND readline
