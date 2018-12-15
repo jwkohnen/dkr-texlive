@@ -1,6 +1,6 @@
-FROM debian:testing
+FROM debian:stretch
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV	DEBIAN_FRONTEND noninteractive
 COPY	locale.gen /etc/locale.gen-docker
 RUN	dpkg-divert /etc/locale.gen \
 &&      echo tzdata tzdata/Zones/Etc select UTC | debconf-set-selections \
@@ -8,9 +8,8 @@ RUN	dpkg-divert /etc/locale.gen \
 &&      echo debconf debconf/frontend select readline | debconf-set-selections \
 &&      echo debconf debconf/frontend seen false | debconf-set-selections \
 &&	apt-get update -qqy \
-&&	apt-get install eatmydata -yqq \
-&&	eatmydata apt-get dist-upgrade -fyqq \
-&&	eatmydata apt-get -yqq install locales texlive-full texlive-latex-extra \
+&&	apt-get dist-upgrade -fyqq \
+&&	apt-get -yqq install locales texlive-full texlive-latex-extra \
 &&	apt-get clean \
 &&	rm -rf /var/lib/apt/lists/* \
 &&	mv /etc/locale.gen-docker /etc/locale.gen \
@@ -18,4 +17,4 @@ RUN	dpkg-divert /etc/locale.gen \
 &&	dpkg-reconfigure locales \
 &&	dpkg-reconfigure tzdata
 CMD	[ "/bin/bash", "-li" ]
-ENV DEBIAN_FRONTEND readline
+ENV	DEBIAN_FRONTEND readline
